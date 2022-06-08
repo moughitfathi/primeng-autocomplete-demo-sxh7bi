@@ -1,0 +1,78 @@
+<h5>Basic</h5>
+<p-autoComplete
+  [(ngModel)]="selectedCountry"
+  [suggestions]="filteredCountries"
+  (completeMethod)="filterCountry($event)"
+  field="name"
+  [minLength]="1"
+></p-autoComplete>
+
+<h5>Dropdown and Templating</h5>
+<p-autoComplete
+  [(ngModel)]="selectedCountryAdvanced"
+  [suggestions]="filteredCountries"
+  (completeMethod)="filterCountry($event)"
+  field="name"
+  [dropdown]="true"
+>
+  <ng-template let-country pTemplate="header">
+    <div class="country-item">
+      <table class="tab" style="table-layout: fixed;width:100px;">
+        <thead>
+          <th style="color:red; width:80px;">Name</th>
+          <th style="color:red; width:60px;">test</th>
+          <th style="color:red; width:60px;">test</th>
+          <th style="color:red; width:80px;">NAME</th>
+        </thead>
+      </table>
+    </div>
+  </ng-template>
+  <ng-template let-country pTemplate="item">
+    <div class="country-item">
+      <table style="border:1px solid red;table-layout: fixed;width:160px;">
+        <tbody>
+          <tr>
+            <td style="width:80px;overflow: hidden;border:1px solid red;">
+              {{ country.name }}
+            </td>
+
+            <td style="width:50px;overflow:hidden;;border:1px solid red;">b</td>
+            <td style="width:50px;overflow:hidden;;border:1px solid red;">b</td>
+
+            <td style="width:80px;overflow: hidden;;border:1px solid red;">
+              {{ country.name }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
+</p-autoComplete>
+
+<h5>Grouped</h5>
+<p-autoComplete
+  [group]="true"
+  [suggestions]="filteredGroups"
+  (completeMethod)="filterGroupedCity($event)"
+  field="label"
+  [multiple]="true"
+  [dropdown]="true"
+>
+  <ng-template let-group pTemplate="group">
+    <div class="p-d-flex p-ai-center">
+      <span>{{ group.label }}</span>
+    </div>
+  </ng-template>
+</p-autoComplete>
+
+<h5>Multiple</h5>
+<span class="p-fluid">
+  <p-autoComplete
+    [(ngModel)]="selectedCountries"
+    [suggestions]="filteredCountries"
+    (completeMethod)="filterCountry($event)"
+    field="name"
+    [multiple]="true"
+  >
+  </p-autoComplete>
+</span>
